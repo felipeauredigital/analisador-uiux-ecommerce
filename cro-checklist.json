@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "titulo": "Checklist de CRO / UI-UX para E-commerce",
+  "descricao": "Passo a passo de análise de conversão e experiência para lojas virtuais. Cada item traz a ação esperada e a referência de como deveria ser (boa prática).",
+  "sections": [
+    {
+      "id": "geral",
+      "titulo": "Geral",
+      "icon": "🌐",
+      "resumo": "Fundamentos do site: confiança, performance, navegação e identidade visual.",
+      "instrucaoImagem": "Envie um print da home completa e/ou do topo do site (cabeçalho + barra superior).",
+      "items": [
+        { "acao": "Criar conta na Clarity para identificar problemas na jornada de compra", "dica": "Instale o Microsoft Clarity (gratuito) para gravar sessões e mapas de calor e enxergar onde o cliente trava.", "obs": "https://clarity.microsoft.com/ — quando lançar o site oficial", "visual": false },
+        { "acao": "Domínio personalizado / oficial", "dica": "Use um domínio próprio (.com.br) que passe profissionalismo — nada de subdomínios de plataforma.", "obs": "Quando lançar o site oficial", "visual": false },
+        { "acao": "Certificado SSL (cadeado de segurança)", "dica": "O site deve carregar em https com cadeado; sem isso o navegador alerta o cliente e derruba a confiança.", "obs": "Quando lançar o site oficial", "visual": true },
+        { "acao": "Site com carregamento até 3 segundos", "dica": "Otimize imagens e scripts para carregar em menos de 3s — cada segundo a mais aumenta a taxa de abandono.", "obs": "", "visual": false },
+        { "acao": "Site com layout intuitivo e organizado", "dica": "Hierarquia visual clara, blocos bem separados e caminhos óbvios até o produto e o carrinho.", "obs": "", "visual": true },
+        { "acao": "Layout responsivo (adequado a todos os dispositivos)", "dica": "A experiência precisa ser impecável no mobile, onde vem a maior parte do tráfego.", "obs": "", "visual": true },
+        { "acao": "Campo de buscas em destaque no topo", "dica": "Barra de busca sempre visível no cabeçalho, com lupa clara e placeholder convidando a pesquisar.", "obs": "", "visual": true },
+        { "acao": "Ícone de carrinho em destaque", "dica": "Carrinho fixo no topo à direita, com contador de itens visível.", "obs": "", "visual": true },
+        { "acao": "Fontes e cores com boa leitura em todos os dispositivos", "dica": "Bom contraste entre texto e fundo e tamanho de fonte confortável (mín. 16px no corpo).", "obs": "", "visual": true },
+        { "acao": "Cores condizentes com a marca", "dica": "Paleta consistente com a identidade da marca em botões, banners e detalhes.", "obs": "", "visual": true },
+        { "acao": "Comunicação, banners e layout seguindo a identidade visual da marca", "dica": "Todos os banners e peças com a mesma linguagem visual, tipografia e tom da marca.", "obs": "", "visual": true },
+        { "acao": "Barra superior de condições comerciais", "dica": "Faixa no topo com frete grátis, parcelamento e cupom — reforça as vantagens logo de cara.", "obs": "", "visual": true },
+        { "acao": "Botão do WhatsApp", "dica": "Botão flutuante de WhatsApp para tirar dúvidas e reduzir a fricção da compra.", "obs": "Adicionar botão de WhatsApp no site", "visual": true },
+        { "acao": "Retirar popups (principalmente na versão mobile)", "dica": "Evite popups que cobrem a tela no mobile; se usar, que sejam discretos e fáceis de fechar.", "obs": "", "visual": true },
+        { "acao": "Mostrar segunda foto de produtos ao passar o mouse", "dica": "Hover trocando para uma segunda imagem do produto aumenta o engajamento na vitrine.", "obs": "", "visual": true },
+        { "acao": "Renovação semanal dos banners da home", "dica": "Atualize os banners toda semana para manter a home viva e refletir campanhas atuais.", "obs": "", "visual": false },
+        { "acao": "Atualização / revisão das vitrines e produtos destacados na home", "dica": "Revise semanalmente as vitrines destacando lançamentos e mais vendidos.", "obs": "", "visual": false },
+        { "acao": "Revisão semanal das principais categorias do site (mais vendidos, lançamentos, sale...)", "dica": "Mantenha as categorias estratégicas sempre curadas e atualizadas.", "obs": "", "visual": false },
+        { "acao": "Lançamentos de novos produtos semanais ou quinzenais", "dica": "Cadência constante de novidades dá motivo para o cliente voltar.", "obs": "", "visual": false },
+        { "acao": "Diversificação do mix de produtos (complementares para aumento de ticket e recompra)", "dica": "Inclua produtos complementares para elevar o ticket médio e estimular a recompra.", "obs": "", "visual": false },
+        { "acao": "Posicionamento da curva A de produtos nos principais marketplaces (aquisição de clientes)", "dica": "Use os campeões de venda nos marketplaces como porta de entrada de novos clientes.", "obs": "", "visual": false },
+        { "acao": "Configuração de CRM para acompanhamento de CAC e LTV", "dica": "Estruture um CRM para medir custo de aquisição e valor do cliente ao longo do tempo.", "obs": "", "visual": false }
+      ]
+    },
+    {
+      "id": "pagina-inicial",
+      "titulo": "Página Inicial",
+      "icon": "🏠",
+      "resumo": "A home precisa vender em segundos: condições, categorias, destaques e prova social.",
+      "instrucaoImagem": "Envie um ou mais prints da página inicial (topo, meio e rodapé da home).",
+      "items": [
+        { "acao": "Banner de condições comerciais em destaque na home", "dica": "Primeiro banner ou faixa deixando claro frete grátis, cupom ou parcelamento.", "obs": "", "visual": true },
+        { "acao": "Banners de categorias em destaque na home", "dica": "Blocos visuais levando às principais categorias logo abaixo do banner principal.", "obs": "", "visual": true },
+        { "acao": "Posts / feed do Instagram na home", "dica": "Feed do Instagram integrado reforça prova social e conexão com a marca.", "obs": "", "visual": true },
+        { "acao": "Categoria de mais vendidos em primeira posição no menu", "dica": "\"Mais vendidos\" como primeiro item do menu guia o cliente ao que já converte.", "obs": "", "visual": true },
+        { "acao": "Categoria de ofertas / sales / promoções / outlet", "dica": "Uma entrada clara de ofertas atrai quem é sensível a preço.", "obs": "", "visual": true },
+        { "acao": "Categoria de lançamentos", "dica": "Destaque de lançamentos para engajar clientes recorrentes.", "obs": "", "visual": true },
+        { "acao": "3 a 5 banners principais na página inicial (ação do mês, lançamentos, condição comercial)", "dica": "Carrossel enxuto (3 a 5 banners) com ação do mês, lançamento e condição comercial.", "obs": "", "visual": true },
+        { "acao": "Principais produtos em destaque na home", "dica": "Vitrine de produtos-chave já na home encurta o caminho até a compra.", "obs": "", "visual": true },
+        { "acao": "Avaliações de clientes na home", "dica": "Depoimentos/estrelas na home constroem confiança antes mesmo do produto.", "obs": "", "visual": true },
+        { "acao": "Nome e preço de produtos em destaque", "dica": "Todo produto na vitrine com nome legível e preço visível (e preço \"de/por\" quando houver).", "obs": "", "visual": true }
+      ]
+    },
+    {
+      "id": "rodape",
+      "titulo": "Rodapé",
+      "icon": "📄",
+      "resumo": "O rodapé é a base de confiança: segurança, dados legais e canais de suporte.",
+      "instrucaoImagem": "Envie um print do rodapé completo do site.",
+      "items": [
+        { "acao": "Bandeiras de pagamento", "dica": "Mostre as bandeiras aceitas (Visa, Master, Pix...) para transmitir segurança.", "obs": "", "visual": true },
+        { "acao": "Selos de segurança", "dica": "Selos (SSL, site seguro, Google) reduzem o medo de comprar.", "obs": "", "visual": true },
+        { "acao": "CNPJ no rodapé", "dica": "Exiba o CNPJ — sinal essencial de que existe uma empresa real por trás.", "obs": "", "visual": true },
+        { "acao": "Telefone no rodapé", "dica": "Telefone/canal de contato visível aumenta a confiança e o suporte.", "obs": "", "visual": true },
+        { "acao": "Endereço no rodapé", "dica": "Endereço físico reforça que a loja é legítima.", "obs": "", "visual": true },
+        { "acao": "Selo do Reclame Aqui no rodapé", "dica": "Selo do Reclame Aqui com reputação boa é forte prova social.", "obs": "", "visual": true },
+        { "acao": "Link das redes sociais no rodapé", "dica": "Ícones das redes ativas mostram uma marca presente e viva.", "obs": "", "visual": true },
+        { "acao": "Link política de entrega, troca e devolução", "dica": "Políticas claras e acessíveis reduzem a insegurança na compra.", "obs": "", "visual": true },
+        { "acao": "Link de \"Quem somos\" ou \"Sobre nós\"", "dica": "História da marca cria conexão e diferencia de concorrentes.", "obs": "", "visual": true },
+        { "acao": "Link de \"A marca é confiável?\"", "dica": "Página dedicada reunindo provas de confiabilidade responde à objeção número 1.", "obs": "", "visual": true },
+        { "acao": "Campo de cadastro para newsletter", "dica": "Captura de e-mail com incentivo (cupom) alimenta o remarketing.", "obs": "", "visual": true },
+        { "acao": "Campo ou página de rastreio de pedidos", "dica": "Rastreio fácil reduz tickets de suporte e ansiedade pós-compra.", "obs": "", "visual": true }
+      ]
+    },
+    {
+      "id": "categorias",
+      "titulo": "Categorias",
+      "icon": "🗂️",
+      "resumo": "Páginas de categoria bem organizadas encurtam o caminho até o produto certo.",
+      "instrucaoImagem": "Envie um print de uma página de categoria (listagem de produtos com filtros).",
+      "items": [
+        { "acao": "Banner em todas as categorias do site", "dica": "Um banner no topo da categoria resume a proposta e dá contexto visual.", "obs": "Adicionar um banner que resuma a categoria", "visual": true },
+        { "acao": "Nome e preço de produtos em destaque", "dica": "Cada card com nome legível e preço claro (com preço \"de/por\" quando houver).", "obs": "", "visual": true },
+        { "acao": "Tags de descontos nos produtos (percentual ou valor economizado)", "dica": "Selo de desconto (%, ou R$ economizados) chama atenção para a oferta.", "obs": "", "visual": true },
+        { "acao": "Vitrine organizada com produtos de grade completa no topo", "dica": "Produtos com estoque completo primeiro; evite mostrar itens esgotados no topo.", "obs": "Ajustar", "visual": true },
+        { "acao": "Filtros nas categorias (preços, tamanhos, cores, ambientes, estilos...)", "dica": "Filtros ricos deixam o cliente achar rápido o que quer.", "obs": "", "visual": true },
+        { "acao": "Kits com descontos, brindes ou amostra grátis", "dica": "Kits e brindes elevam o ticket e aumentam o valor percebido.", "obs": "", "visual": true },
+        { "acao": "Seleção de produtos com desconto (pelo menos 20% do mix total)", "dica": "Mantenha ao menos 20% do mix com desconto para atrair e converter.", "obs": "", "visual": false },
+        { "acao": "Mix de produtos reduzido e estratégico (foco em profundidade e validação)", "dica": "Menos SKUs, mais profundidade nos que vendem — facilita a decisão.", "obs": "", "visual": false }
+      ]
+    },
+    {
+      "id": "pagina-produto",
+      "titulo": "Página de Produto",
+      "icon": "🛍️",
+      "resumo": "É onde a venda acontece: fotos, prova social, condições e um CTA irresistível.",
+      "instrucaoImagem": "Envie prints da página de um produto (topo com fotos/preço e a parte de descrição/avaliações).",
+      "items": [
+        { "acao": "Cálculo do frete na página do produto", "dica": "Campo de CEP calculando o frete ali mesmo evita surpresa no checkout.", "obs": "Shopify: alguns temas não permitem", "visual": true },
+        { "acao": "Pelo menos 2 opções de entrega", "dica": "Ofereça econômico e expresso (ex.: PAC e Sedex) para o cliente escolher.", "obs": "Econômico e expresso", "visual": true },
+        { "acao": "Tags de descontos nos produtos (percentual ou valor economizado)", "dica": "Mostre o desconto em destaque (% ou R$ economizados) perto do preço.", "obs": "", "visual": true },
+        { "acao": "5 fotos de cada produto", "dica": "No mínimo 5 fotos em ângulos e contextos diferentes, alta qualidade.", "obs": "", "visual": true },
+        { "acao": "Descrição técnica completa", "dica": "Ficha técnica com medidas, materiais e especificações que tiram dúvidas.", "obs": "", "visual": true },
+        { "acao": "Descrição persuasiva e detalhada (padrão AIDA)", "dica": "Texto que gera desejo (Atenção, Interesse, Desejo, Ação), não só especificação.", "obs": "", "visual": true },
+        { "acao": "Vídeo na página do produto", "dica": "Vídeo do produto em uso aumenta conversão e reduz devolução.", "obs": "Ferramentas: widde.io, vidget.com.br", "visual": true },
+        { "acao": "Nome e preço em destaque na página do produto", "dica": "Nome e preço grandes e claros, sem o cliente precisar procurar.", "obs": "", "visual": true },
+        { "acao": "Informações de pagamento e parcelamento na página de produto", "dica": "Mostre parcelamento e formas de pagamento perto do botão comprar.", "obs": "Adicionar informações de parcelamento", "visual": true },
+        { "acao": "Depoimentos de clientes na página de produto", "dica": "Depoimentos reais com foto aumentam a confiança na hora H.", "obs": "", "visual": true },
+        { "acao": "Avaliações de clientes na página de produto", "dica": "Estrelas e reviews com contagem funcionam como prova social decisiva.", "obs": "", "visual": true },
+        { "acao": "Resultados e provas sociais", "dica": "Antes/depois, números e menções reforçam que o produto entrega.", "obs": "", "visual": true },
+        { "acao": "Tabela de medidas", "dica": "Tabela de medidas clara e fácil de ler reduz troca por tamanho errado.", "obs": "Ajustar para formato mais fácil de visualizar", "visual": true },
+        { "acao": "Produtos relacionados (compre junto, outros clientes também compraram)", "dica": "Recomendações relacionadas elevam o ticket via cross-sell.", "obs": "", "visual": true },
+        { "acao": "Zoom nas fotos dos produtos", "dica": "Zoom nas imagens deixa o cliente ver detalhes e ganhar confiança.", "obs": "", "visual": true },
+        { "acao": "Botão de \"comprar\" em destaque", "dica": "CTA de comprar com cor de contraste, grande e sempre visível.", "obs": "", "visual": true },
+        { "acao": "Seleção de quantidade na página de produto", "dica": "Seletor de quantidade simples para comprar mais de uma unidade.", "obs": "", "visual": true },
+        { "acao": "Cores reais ou fotos em miniatura na seleção", "dica": "Miniaturas com a cor/estampa real evitam erro de escolha.", "obs": "", "visual": true },
+        { "acao": "Destaque com a quantidade de produtos vendidos", "dica": "\"+500 vendidos\" ativa prova social e senso de popularidade.", "obs": "", "visual": true },
+        { "acao": "Botão de voltar ao topo", "dica": "Botão \"voltar ao topo\" ajuda em páginas longas, principalmente no mobile.", "obs": "", "visual": true },
+        { "acao": "Informações sobre valor restante para ganhar frete (barra de aviso)", "dica": "\"Faltam R$ X para frete grátis\" incentiva a aumentar o carrinho.", "obs": "", "visual": true },
+        { "acao": "Seleção de tamanhos na página de produto", "dica": "Seletor de tamanho claro, indicando indisponíveis sem esconder.", "obs": "", "visual": true },
+        { "acao": "Não incluir botão que retire a pessoa do site enquanto estiver na página de produto", "dica": "Evite links que tiram o cliente do fluxo de compra (redes, blog) nesta etapa.", "obs": "", "visual": true }
+      ]
+    },
+    {
+      "id": "carrinho",
+      "titulo": "Carrinho",
+      "icon": "🛒",
+      "resumo": "O carrinho deve dar segurança e ainda aumentar o ticket antes do checkout.",
+      "instrucaoImagem": "Envie um print da página/gaveta do carrinho com itens.",
+      "items": [
+        { "acao": "Logo / identidade visual alinhada com a marca no carrinho", "dica": "Carrinho com a cara da marca mantém a percepção de confiança.", "obs": "", "visual": true },
+        { "acao": "Calculadora de frete no carrinho", "dica": "Cálculo de frete por CEP no carrinho evita abandono por surpresa depois.", "obs": "", "visual": true },
+        { "acao": "Pelo menos 2 opções de entrega", "dica": "Econômico e expresso disponíveis para o cliente escolher.", "obs": "", "visual": true },
+        { "acao": "Informações sobre valor restante para ganhar frete (barra de aviso)", "dica": "Barra \"faltam R$ X para frete grátis\" incentiva a completar o pedido.", "obs": "", "visual": true },
+        { "acao": "Upsell na página de carrinho", "dica": "Sugestões de \"leve também\" no carrinho elevam o ticket médio.", "obs": "", "visual": true }
+      ]
+    },
+    {
+      "id": "checkout",
+      "titulo": "Checkout",
+      "icon": "💳",
+      "resumo": "Quanto menos fricção e mais segurança no checkout, maior a conversão final.",
+      "instrucaoImagem": "Envie um print da tela de checkout (dados/pagamento).",
+      "items": [
+        { "acao": "Logo no checkout", "dica": "Logo presente no checkout mantém a confiança e reduz a sensação de \"saí do site\".", "obs": "", "visual": true },
+        { "acao": "Selo de segurança", "dica": "Selos de compra segura no checkout reduzem o abandono no último passo.", "obs": "Adicionar", "visual": true },
+        { "acao": "Checkout sem necessidade de cadastro antecipado", "dica": "Permita comprar como convidado; exigir cadastro antes derruba a conversão.", "obs": "", "visual": true },
+        { "acao": "Checkout transparente (no mesmo site do e-commerce)", "dica": "Finalização dentro do próprio site passa mais segurança que redirecionar.", "obs": "", "visual": true },
+        { "acao": "Checkout simplificado (sem requisitar muitas informações)", "dica": "Peça só o essencial; cada campo a mais é um motivo para desistir.", "obs": "", "visual": true },
+        { "acao": "Calculadora de frete no checkout", "dica": "Frete calculado com opções claras antes de pagar.", "obs": "", "visual": true },
+        { "acao": "Pelo menos 2 opções de entrega", "dica": "Ofereça econômico e expresso também no checkout.", "obs": "", "visual": true },
+        { "acao": "Upsell / order bump na página de checkout", "dica": "Oferta de última hora (order bump) aumenta o ticket sem fricção.", "obs": "", "visual": true },
+        { "acao": "Pelo menos 2 opções de pagamento (cartão de crédito e Pix)", "dica": "Cartão e Pix no mínimo; Pix costuma ter a maior taxa de aprovação.", "obs": "", "visual": true },
+        { "acao": "Não incluir botão que retire a pessoa do site no checkout", "dica": "Nada de links externos no checkout — foco total em concluir a compra.", "obs": "", "visual": true },
+        { "acao": "Chat online", "dica": "Chat/atendimento no checkout resolve a última dúvida e salva a venda.", "obs": "", "visual": true }
+      ]
+    },
+    {
+      "id": "reclame-aqui",
+      "titulo": "Reclame Aqui",
+      "icon": "⭐",
+      "resumo": "Reputação externa é prova social decisiva; precisa estar cuidada e visível.",
+      "instrucaoImagem": "Opcional: envie um print da página da loja no Reclame Aqui.",
+      "items": [
+        { "acao": "Não possuir muitas reclamações e falta de soluções no Reclame Aqui", "dica": "Reputação boa/ótima e índice de solução alto — monitore e trate o que aparece.", "obs": "", "visual": true },
+        { "acao": "Responder todas as reclamações do Reclame Aqui", "dica": "Responder 100% das reclamações mostra empresa presente e melhora a nota.", "obs": "", "visual": true },
+        { "acao": "Personalizar página da empresa no Reclame Aqui (plano pago)", "dica": "Página oficial personalizada transmite seriedade e organiza a reputação.", "obs": "Plano pago", "visual": true }
+      ]
+    }
+  ]
+}

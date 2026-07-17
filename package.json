@@ -1,0 +1,14 @@
+{
+  "name": "analisador-uiux-ecommerce",
+  "version": "1.0.0",
+  "description": "Análise de UI/UX e CRO de e-commerce com IA a partir de prints reais da loja.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
