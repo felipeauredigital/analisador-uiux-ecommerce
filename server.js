@@ -6,12 +6,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ---------- Configuração via variáveis de ambiente ----------
-// OPENAI_API_KEY  -> chave da OpenAI (obrigatória para a análise por IA)
-// OPENAI_MODEL    -> modelo com visão (padrão: gpt-4o)
-// APP_PASSWORD    -> se definida, protege o app com uma senha única (opcional)
+// OPENAI_API_KEY      -> chave da OpenAI (obrigatória para a análise por IA)
+// OPENAI_MODEL        -> modelo com visão (padrão: gpt-4o)
+// APP_PASSWORD        -> se definida, protege o app com uma senha única (opcional)
+// SCREENSHOT_PROVIDER -> serviço de captura de tela por URL: 'microlink' (padrão) ou 'thumio'
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o';
 const APP_PASSWORD = process.env.APP_PASSWORD || '';
+const SCREENSHOT_PROVIDER = (process.env.SCREENSHOT_PROVIDER || 'microlink').toLowerCase();
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 const CHECKLIST_PATH = path.join(__dirname, 'cro-checklist.json');
 
@@ -199,6 +201,50 @@ app.post('/api/analyze', requireAuth, async (req, res) => {
     res.json({ sectionId, itens });
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+// ---------- Captura de tela de uma página pela URL ----------
+// Usa um serviço externo (sem instalar navegador no servidor, para não pesar).
+async function captureScreenshot(url) {
+  if (SCREENSHOT_PROVIDER === 'thumio') {
+    const api = `https://image.thum.io/get/width/1366/fullpage/wait/4/noanimate/${url}`;
+    const r = await fetchWithTimeout(api, {}, 60000);
+    const ct = r.headers.get('content-type') || '';
+    if (!r.ok || !ct.startsWith('image/')) throw new Error(`o serviço de captura retornou HTTP ${r.status}.`);
+    const buf = Buffer.from(await r.arrayBuffer());
+    return `data:${ct};base64,${buf.toString('base64')}`;
+  }
+
+  // microlink (padrão): retorna JSON com a URL do screenshot; depois baixamos a imagem.
+  const api =
+    `https://api.microlink.io/?url=${encodeURIComponent(url)}` +
+    `&screenshot=true&fullPage=true&meta=false&type=png&waitUntil=networkidle2`;
+  const r = await fetchWithTimeout(api, { headers: { Accept: 'application/json' } }, 60000);
+  const j = await r.json().catch(() => null);
+  if (!j || j.status !== 'success' || !(j.data && j.data.screenshot && j.data.screenshot.url)) {
+    const msg = (j && (j.message || (j.data && j.data.message))) || `o serviço de captura retornou HTTP ${r.status}.`;
+    throw new Error(msg);
+  }
+  const imgResp = await fetchWithTimeout(j.data.screenshot.url, {}, 60000);
+  if (!imgResp.ok) throw new Error('falha ao baixar a captura gerada.');
+  const ct = imgResp.headers.get('content-type') || 'image/png';
+  const buf = Buffer.from(await imgResp.arrayBuffer());
+  return `data:${ct};base64,${buf.toString('base64')}`;
+}
+
+app.post('/api/capture', requireAuth, async (req, res) => {
+  const { url } = req.body || {};
+  if (!url || !/^https?:\/\//i.test(String(url))) {
+    return res.status(400).json({ error: 'Informe uma URL válida começando com http:// ou https://.' });
+  }
+  try {
+    const dataUrl = await captureScreenshot(String(url).trim());
+    res.json({ dataUrl });
+  } catch (err) {
+    res.status(400).json({
+      error: 'Não foi possível capturar esta página automaticamente (o site pode bloquear captura). Você ainda pode enviar o print manualmente. Detalhe: ' + err.message,
+    });
   }
 });
 

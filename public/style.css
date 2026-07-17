@@ -153,6 +153,12 @@ input, select, textarea { font-family: inherit; }
 .cro-sec-prog-txt { font-size: 12.5px; font-weight: 700; color: var(--text-dim); min-width: 34px; text-align: right; }
 .cro-sec-resume { color: var(--text-dim); font-size: 13px; margin: 6px 0 14px; }
 
+.cro-capture { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+.cro-capture .cro-url { flex: 1; min-width: 220px; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 13.5px; }
+.cro-capture .cro-url:focus { outline: none; border-color: var(--accent); }
+.cro-capture-btn { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+.cro-capture-status { font-size: 12.5px; color: var(--text-dim); flex-basis: 100%; }
+
 .cro-drop { border: 2px dashed var(--border); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: var(--surface-2); }
 .cro-drop:hover, .cro-drop.dragover { border-color: var(--accent); background: rgba(91,140,255,.08); }
 .cro-drop-hint { color: var(--text-dim); font-size: 13.5px; line-height: 1.5; }

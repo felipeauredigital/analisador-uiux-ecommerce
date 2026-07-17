@@ -6,7 +6,7 @@ App **independente** que gera uma apresentação personalizada de UI/UX e CRO de
 
 ## O que ele faz
 
-- Você envia os **prints reais** do e-commerce em cada seção (Página Inicial, Categorias, Página de Produto, Carrinho, Checkout, Rodapé, Geral, Reclame Aqui — 8 seções, 94 itens).
+- Você envia os **prints reais** do e-commerce em cada seção (Página Inicial, Categorias, Página de Produto, Carrinho, Checkout, Rodapé, Geral, Reclame Aqui — 8 seções, 94 itens) — **enviando manualmente** ou **capturando automaticamente pela URL** (botão “📸 Capturar do site”).
 - A **IA (OpenAI)** analisa cada imagem contra o checklist e classifica cada item em *Feito / A ajustar / Não se aplica / Verificar*, com observação e recomendação.
 - Você **revisa e edita** tudo (IA + revisão humana).
 - Gera uma **apresentação em slides** (capa com score, resumo por seção, oportunidades e, por seção, imagem real × recomendações) e **exporta em PDF**.
@@ -28,6 +28,7 @@ OPENAI_API_KEY=sk-xxxxx npm start
 | `OPENAI_API_KEY` | Sim (para IA) | Chave da OpenAI (crie em platform.openai.com). Sem ela, o app funciona só no modo manual. |
 | `OPENAI_MODEL` | Não | Modelo com visão. Padrão: `gpt-4o`. |
 | `APP_PASSWORD` | Não (recomendada) | Se definida, protege o app com uma senha única de acesso. Sem ela, o app fica aberto para quem tiver o link. |
+| `SCREENSHOT_PROVIDER` | Não | Serviço de captura de tela por URL: `microlink` (padrão) ou `thumio`. Se um não funcionar bem para um site, troque pelo outro. |
 | `PORT` | Não | Porta do servidor (padrão 3000). O provedor de hospedagem normalmente define automaticamente. |
 
 ## Publicar no Render (como serviço separado, sem afetar o outro app)
@@ -45,7 +46,9 @@ OPENAI_API_KEY=sk-xxxxx npm start
 
 1. Abra o app (digite a senha, se você configurou `APP_PASSWORD`).
 2. Preencha nome e URL da loja.
-3. Em cada seção, **envie os prints** do e-commerce.
+3. Em cada seção, adicione as telas de duas formas:
+   - **📸 Capturar do site:** cole a URL da página e o app tira o print sozinho (ótimo para Home, Categoria e Página de Produto). Ao digitar a URL da loja no topo, as seções da home já herdam o link.
+   - **Envio manual:** arraste/selecione os prints. **Carrinho e Checkout** normalmente precisam ser manuais, pois exigem adicionar produtos e avançar no site.
 4. Clique em **Analisar com IA** (ou **Analisar tudo com IA**).
 5. **Revise** os status, observações e recomendações.
 6. **Gerar apresentação** → **Exportar PDF**.

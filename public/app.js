@@ -84,6 +84,7 @@ function initData() {
   for (const s of state.checklist.sections) {
     state.data[s.id] = {
       images: [],
+      url: '',
       itens: s.items.map((it) => ({
         acao: it.acao,
         dica: it.dica || '',
@@ -243,7 +244,16 @@ function renderEditor() {
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) logoutBtn.onclick = logout;
   document.getElementById('storeName').oninput = (e) => { state.store.name = e.target.value; };
-  document.getElementById('storeUrl').oninput = (e) => { state.store.url = e.target.value; };
+  document.getElementById('storeUrl').oninput = (e) => {
+    state.store.url = e.target.value;
+    // Preenche automaticamente o campo de captura das seções da home (só as que
+    // o usuário ainda não personalizou), para não precisar colar a URL de novo.
+    HOME_SECTIONS.forEach((id) => {
+      if (!state.data[id] || state.data[id].url) return;
+      const inp = document.getElementById(`url-${id}`);
+      if (inp) inp.value = e.target.value;
+    });
+  };
   document.getElementById('presentBtn').onclick = renderPresentation;
   document.getElementById('analyzeAll').onclick = analyzeAllSections;
   document.getElementById('saveBtn').onclick = saveProject;
@@ -277,6 +287,14 @@ function renderOverall() {
   `;
 }
 
+// Seções cuja URL padrão é a home da loja (as demais precisam de link específico).
+const HOME_SECTIONS = ['geral', 'pagina-inicial', 'rodape'];
+function sectionUrlValue(sectionId) {
+  const saved = state.data[sectionId].url;
+  if (saved) return saved;
+  return HOME_SECTIONS.includes(sectionId) ? (state.store.url || '') : '';
+}
+
 function sectionCardInner(section) {
   const d = state.data[section.id];
   const sc = sectionScore(section.id);
@@ -290,8 +308,13 @@ function sectionCardInner(section) {
       </div>
     </div>
     <div class="cro-sec-resume">${escapeHtml(section.resumo || '')}</div>
+    <div class="cro-capture">
+      <input type="url" class="cro-url" id="url-${section.id}" placeholder="Cole aqui a URL desta página para capturar automaticamente" value="${escapeHtml(sectionUrlValue(section.id))}" />
+      <button class="cro-capture-btn" data-sec="${section.id}">📸 Capturar do site</button>
+      <span class="cro-capture-status" id="capstat-${section.id}"></span>
+    </div>
     <div class="cro-drop" id="drop-${section.id}">
-      <div class="cro-drop-hint">📷 ${escapeHtml(section.instrucaoImagem || 'Envie os prints desta seção.')}<br><span>Clique para escolher ou arraste as imagens aqui</span></div>
+      <div class="cro-drop-hint">📷 ${escapeHtml(section.instrucaoImagem || 'Envie os prints desta seção.')}<br><span>Ou clique para escolher / arraste as imagens aqui</span></div>
       <input type="file" id="file-${section.id}" accept="image/*" multiple class="hidden" />
     </div>
     <div class="cro-thumbs">
@@ -353,6 +376,10 @@ function wireSectionCard(section) {
   card.querySelectorAll('.cro-thumb-del').forEach((b) => {
     b.onclick = () => removeImage(b.dataset.sec, Number(b.dataset.img));
   });
+  const urlInput = card.querySelector('.cro-url');
+  if (urlInput) urlInput.oninput = () => { state.data[id].url = urlInput.value; };
+  const captureBtn = card.querySelector('.cro-capture-btn');
+  if (captureBtn) captureBtn.onclick = () => captureSection(id);
   card.querySelector('.cro-analyze-btn').onclick = () => analyzeSection(id);
 
   card.querySelectorAll('.cro-status-sel').forEach((sel) => {
@@ -417,6 +444,53 @@ function downscaleImage(file, maxDim = 2200, quality = 0.85) {
     reader.onerror = () => reject(new Error('Falha ao ler o arquivo.'));
     reader.readAsDataURL(file);
   });
+}
+
+// Reduz uma imagem já em dataURL (usada nas capturas vindas do servidor).
+function downscaleDataUrl(dataUrl, maxDim = 2200, quality = 0.85) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      let { width, height } = img;
+      const scale = Math.min(1, maxDim / Math.max(width, height));
+      width = Math.max(1, Math.round(width * scale));
+      height = Math.max(1, Math.round(height * scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    img.onerror = () => resolve(dataUrl); // se falhar, mantém a original
+    img.src = dataUrl;
+  });
+}
+
+// Captura o print da página pela URL (via servidor) e adiciona à seção.
+async function captureSection(sectionId) {
+  const input = document.getElementById(`url-${sectionId}`);
+  const statusEl = document.getElementById(`capstat-${sectionId}`);
+  const url = (input && input.value || '').trim();
+  if (!/^https?:\/\//i.test(url)) {
+    if (statusEl) statusEl.textContent = 'Cole uma URL começando com https://';
+    return;
+  }
+  state.data[sectionId].url = url;
+  const btn = document.querySelector(`.cro-capture-btn[data-sec="${sectionId}"]`);
+  if (btn) btn.disabled = true;
+  if (statusEl) statusEl.textContent = '📸 Capturando a página... (pode levar alguns segundos)';
+  try {
+    const { dataUrl } = await api('/api/capture', { method: 'POST', body: JSON.stringify({ url }) });
+    const small = await downscaleDataUrl(dataUrl);
+    state.data[sectionId].images.push({ id: imgSeq++, dataUrl: small });
+    refreshSection(sectionId);
+    const after = document.getElementById(`capstat-${sectionId}`);
+    if (after) after.textContent = '✅ Captura adicionada.';
+  } catch (err) {
+    if (btn) btn.disabled = false;
+    if (statusEl) statusEl.textContent = '';
+    showToast('Captura: ' + err.message);
+  }
 }
 
 async function addImages(sectionId, fileList) {
@@ -529,6 +603,7 @@ function openProject(file) {
       for (const s of state.checklist.sections) {
         const saved = project.data[s.id];
         if (!saved) continue;
+        if (typeof saved.url === 'string') state.data[s.id].url = saved.url;
         if (Array.isArray(saved.images)) {
           state.data[s.id].images = saved.images.map((img) => ({ id: imgSeq++, dataUrl: img.dataUrl }));
         }
